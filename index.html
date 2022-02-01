@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let rock = 'rock',
+        paper = 'paper',
+        scissors = 'scissors';
+
+        let options = [rock, paper, scissors];
+        
+        
+        
+
+
+        let choice = prompt('Rock, Paper, or Scissors?: ')
+
+        function playerSelection(choice) {
+            choice = choice.toLowerCase();
+
+            if (choice === rock) {
+                return rock;
+            } else if (choice === paper) {
+                return paper;
+            } else if (choice === scissors) {
+                return scissors;
+            } else {
+                return choice;
+            }
+        }
+
+        function computerSelection() {
+            let randomChoice = options[Math.floor(Math.random()*options.length)];
+            return randomChoice;
+
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            
+        }
+
+
+        function computerPlay() {
+
+        }
+
+    </script>
+</body>
+</html>
+
+<!-- 
+    Rock paper scissors game against computer.
+    Player can select rock paper or scissors.
+    Computer chooses randomly.
+    
+    Rock beats scissors.
+    Paper beats rock.
+    scissors beats paper.
+
+    There are 5 rounds. Rounds are kept track of. After 5 rounds whoever has the most round wins is declared the winner.
+-->
