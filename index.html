@@ -10,17 +10,11 @@
     <script>
         let playerScore = 0;
         let computerScore = 0;
+        let playerSelection;
+        let roundNumber = 0;
         
         let options = ['rock', 'paper', 'scissors'];
-        // let choice = prompt('Rock, Paper, or Scissors?: ')
-
-        function choice() {
-            let answer = prompt('Rock, Paper, or Scissors?: ')
-            return answer;
-        }
-        
-        
-        const playerSelection = choice();
+           
         const computerSelection = computerPlay();
 
         function computerPlay() {
@@ -29,14 +23,17 @@
         }
 
         function playRound(playerSelection, computerSelection) {
-            playerSelection.toLowerCase();
+            playerSelection = prompt('Rock, Paper, or Scissors?: ')
+            playerSelection = playerSelection.toLowerCase();
             if (playerSelection == computerSelection) {
                 console.log('No winners! Play again.')
+                roundNumber++;
             } else if 
             ((playerSelection == 'rock' && computerSelection == 'scissors') || 
             (playerSelection == 'paper' && computerSelection =='rock') ||
             (playerSelection == 'scissors' && computerSelection == 'paper')
             ) { 
+                roundNumber++;
                 playerScore = playerScore+1;
                 console.log('You win! Your score is: ' + playerScore)
                 
@@ -45,15 +42,14 @@
             (computerSelection == 'paper' && playerSelection =='rock') ||
             (computerSelection == 'scissors' && playerSelection == 'paper') 
             ) {
+                roundNumber++;
                 computerScore = computerScore+1;
                 console.log('You lose! The computer\'s score is: ' + computerScore)
-            }
+            } 
         }
 
         function game() {
-            let playerSelection;
-            for (i = 0; i <= 5; i++) {
-            let answer = prompt('Rock, Paper, or Scissors?: ')
+            for (i = roundNumber; i <= 5; i++) {
             playRound(playerSelection, computerSelection);
             }
         }
@@ -76,21 +72,3 @@
 
     There are 5 rounds. Rounds are kept track of. After 5 rounds whoever has the most round wins is declared the winner.
 -->
-
-<!-- } else if (playerSelection === paper && computerSelection === paper) {
-    console.log('No winners! Play again.')
-} else if (playerSelection === scissors && computerSelection === scissors) {
-    console.log('No winners! Play again.')
-} else if (playerSelection === rock && computerSelection === scissors) {
-    console.log('You win!')
-} else if (playerSelection === rock && computerSelection === paper) {
-    console.log('You lose!')
-} else if (playerSelection === scissors && computerSelection === paper) {
-    console.log('You win!')
-} else if (playerSelection === scissors && computerSelection === rock) {
-    console.log('You lose!')
-} else if (playerSelection === paper && computerSelection === rock) {
-    console.log('You win!')
-} else if (playerSelection === paper && computerSelection === scissors) {
-    console.log('You lose!')
-} -->
