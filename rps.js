@@ -1,13 +1,9 @@
 let playerScore = 0;
 let computerScore = 0;
 let playerSelection;
-let roundNumber = 1;
-
-let options = ['rock', 'paper', 'scissors'];
-    
-const computerSelection = computerPlay();
 
 function computerPlay() {
+    let options = ['rock', 'paper', 'scissors'];
     let randomChoice = options[Math.floor(Math.random()*options.length)];
     return randomChoice;
 }
@@ -15,9 +11,9 @@ function computerPlay() {
 const btnRock = document.querySelector('#rock');
 const btnPaper = document.querySelector('#paper');
 const btnScissors = document.querySelector('#scissors');
-btnRock.addEventListener('click', () => playRound(handleClick('rock'), computerSelection));
-btnPaper.addEventListener('click', () => playRound(handleClick('paper'), computerSelection));
-btnScissors.addEventListener('click', () => playRound(handleClick('scissors'), computerSelection));
+btnRock.addEventListener('click', () => playRound(handleClick('rock'), computerPlay()));
+btnPaper.addEventListener('click', () => playRound(handleClick('paper'), computerPlay()));
+btnScissors.addEventListener('click', () => playRound(handleClick('scissors'), computerPlay()));
 
 let handleClick = (playerSelection) => {
     if (playerSelection === 'rock') {
@@ -36,64 +32,48 @@ const computerScoreId =document.querySelector('#computerScoreId');
 
 function playRound(playerSelection, computerSelection) {
     
-    
-    if (playerSelection == computerSelection) {
+    if (playerSelection === computerSelection) {
         roundWinner.textContent = 'It\'s a tie!'
-        roundNumber++;
+        
     } else if 
     ((playerSelection == 'rock' && computerSelection == 'scissors') || 
     (playerSelection == 'paper' && computerSelection =='rock') ||
     (playerSelection == 'scissors' && computerSelection == 'paper')
     ) { 
-        roundNumber++;
+        
         playerScore = playerScore+1;
         roundWinner.textContent = 'You win!';
         roundMessage.textContent = `${playerSelection} beats ${computerSelection}`
         playerScoreId.textContent = `Player: ${playerScore}`;
+
+        if (playerScore === 5) {
+            roundWinner.textContent = 'You won the whole game!'
+            restartGame();
+        }
         
     } else if 
     ((computerSelection == 'rock' && playerSelection == 'scissors') || 
     (computerSelection == 'paper' && playerSelection == 'rock') ||
     (computerSelection == 'scissors' && playerSelection == 'scissors') 
     ) {
-        roundNumber++;
+        
         computerScore = computerScore+1;
         roundWinner.textContent = 'You lose!';
         roundMessage.textContent = `${computerSelection} beats ${playerSelection}`
         computerScoreId.textContent = `Computer: ${computerScore}` 
+
+        if (computerScore === 5) {
+            roundWinner.textContent = 'You lost the whole game!'
+            restartGame();
+        }
     } 
 }
 
-// function game() {
-//     for (i = roundNumber; i <= 5; i++) {
-//     playRound(playerSelection, computerSelection);
-//     }
-// }
-
-//         game();
-
-// function playRound(playerSelection, computerSelection) {
-//     playerSelection = prompt('Rock, Paper, or Scissors?: ')
-//     playerSelection = playerSelection.toLowerCase();
-//     if (playerSelection == computerSelection) {
-//         console.log('No winners! Play again.')
-//         roundNumber++;
-//     } else if 
-//     ((playerSelection == 'rock' && computerSelection == 'scissors') || 
-//     (playerSelection == 'paper' && computerSelection =='rock') ||
-//     (playerSelection == 'scissors' && computerSelection == 'paper')
-//     ) { 
-//         roundNumber++;
-//         playerScore = playerScore+1;
-//         console.log('You win! Your score is: ' + playerScore)
-        
-//     } else if 
-//     ((computerSelection == 'rock' && playerSelection == 'scissors') || 
-//     (computerSelection == 'paper' && playerSelection =='rock') ||
-//     (computerSelection == 'scissors' && playerSelection == 'paper') 
-//     ) {
-//         roundNumber++;
-//         computerScore = computerScore+1;
-//         console.log('You lose! The computer\'s score is: ' + computerScore)
-//     } 
-// }
+function restartGame() {
+        playerScore = 0;
+        computerScore = 0;
+        roundWinner.textContent = 'Choose your weapon';
+        roundMessage.textContent = 'First to 5 points wins';
+        playerScoreId.textContent = `Player: 0`;
+        computerScoreId.textContent = `Computer: 0`;
+}
