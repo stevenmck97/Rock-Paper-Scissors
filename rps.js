@@ -38,10 +38,10 @@ function playRound(playerSelection, computerSelection) {
     } 
 }
 
-function game() {
-    for (i = roundNumber; i <= 5; i++) {
-    playRound(playerSelection, computerSelection);
-    }
-}
+// function game() {
+//     for (i = roundNumber; i <= 5; i++) {
+//     playRound(playerSelection, computerSelection);
+//     }
+// }
 
-        game();
+//         game();
