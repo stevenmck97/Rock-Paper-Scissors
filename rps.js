@@ -29,11 +29,16 @@ let handleClick = (playerSelection) => {
     }
 }
 
+const roundWinner = document.querySelector('#roundWinner');
+const roundMessage = document.querySelector('#roundMessage');
+const playerScoreId = document.querySelector('#playerScoreId');
+const computerScoreId =document.querySelector('#computerScoreId');
+
 function playRound(playerSelection, computerSelection) {
     
     
     if (playerSelection == computerSelection) {
-        console.log('No winners! Play again.')
+        roundWinner.textContent = 'It\'s a tie!'
         roundNumber++;
     } else if 
     ((playerSelection == 'rock' && computerSelection == 'scissors') || 
@@ -42,7 +47,9 @@ function playRound(playerSelection, computerSelection) {
     ) { 
         roundNumber++;
         playerScore = playerScore+1;
-        console.log('You win! Your score is: ' + playerScore)
+        roundWinner.textContent = 'You win!';
+        roundMessage.textContent = `${playerSelection} beats ${computerSelection}`
+        playerScoreId.textContent = `Player: ${playerScore}`;
         
     } else if 
     ((computerSelection == 'rock' && playerSelection == 'scissors') || 
@@ -51,7 +58,9 @@ function playRound(playerSelection, computerSelection) {
     ) {
         roundNumber++;
         computerScore = computerScore+1;
-        console.log('You lose! The computer\'s score is: ' + computerScore)
+        roundWinner.textContent = 'You lose!';
+        roundMessage.textContent = `${computerSelection} beats ${playerSelection}`
+        computerScoreId.textContent = `Computer: ${computerScore}` 
     } 
 }
 
