@@ -54,7 +54,7 @@ function playRound(playerSelection, computerSelection) {
     } else if 
     ((computerSelection == 'rock' && playerSelection == 'scissors') || 
     (computerSelection == 'paper' && playerSelection == 'rock') ||
-    (computerSelection == 'scissors' && playerSelection == 'scissors') 
+    (computerSelection == 'scissors' && playerSelection == 'paper') 
     ) {
         
         computerScore = computerScore+1;
